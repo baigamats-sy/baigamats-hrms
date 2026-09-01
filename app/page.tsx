@@ -1,54 +1,74 @@
-"use client";
-import Link from "next/link";
-const modules = [
-  {id:"01", title:"Login + Role", path:"/login", icon:"🔐", desc:"Auth & roles"},
-  {id:"02", title:"My HR Portal", path:"/portal", icon:"👤", desc:"Self service"},
-  {id:"03", title:"Approval Queue", path:"/approvals", icon:"✅", desc:"Leave approvals"},
-  {id:"04", title:"Employee Files", path:"/employees", icon:"📁", desc:"Master data"},
-  {id:"05", title:"Leave Calendar", path:"/leave", icon:"📅", desc:"Calendar view"},
-  {id:"06", title:"Payslips", path:"/payslips", icon:"🧾", desc:"Monthly slips"},
-  {id:"07", title:"Staff Directory", path:"/directory", icon:"👥", desc:"Team contacts"},
-  {id:"08", title:"Payroll Engine", path:"/payroll", icon:"💰", desc:"UGX 82M pool"},
-  {id:"09", title:"Audit Log", path:"/audit", icon:"📊", desc:"Logs"},
-  {id:"10", title:"Notifications", path:"/notifications", icon:"🔔", desc:"Alerts"},
-  {id:"11", title:"Settings", path:"/settings", icon:"⚙️", desc:"System config"},
-  {id:"12", title:"Reports", path:"/reports", icon:"📈", desc:"HR analytics"},
-  {id:"13", title:"Attendance", path:"/attendance", icon:"⏱️", desc:"Clock in/out"},
-  {id:"14", title:"Assets", path:"/assets", icon:"💻", desc:"Company assets"},
-  {id:"15", title:"Recruitment", path:"/recruitment", icon:"🎯", desc:"Hiring"},
-  {id:"16", title:"CEO Dashboard", path:"/ceo", icon:"👑", desc:"Executive view"},
-];
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
 export default function Home() {
+  const path = usePathname();
   return (
-    <div className="min-h-screen bg-[#f6f7f9] flex">
-      <aside className="hidden md:flex w-64 bg-gray-900 text-white flex-col p-6 fixed h-full">
-        <div className="flex items-center gap-3 mb-10">
-          <div className="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center font-bold">B</div>
-          <div><p className="font-bold text-sm">BAIGAMATS</p><p className="text-xs text-gray-400">TECHNOLOGIES</p></div>
+    <div className="min-h-screen flex bg-[#f6f7fb] font-sans">
+      {/* SIDEBAR */}
+      <aside className="w-[280px] bg-[#0B1220] text-white flex flex-col p-5">
+        <div className="flex items-center gap-3">
+          <div className="w-11 h-11 bg-gradient-to-br from-emerald-400 to-green-600 rounded-2xl flex items-center justify-center font-black text-[18px]">B</div>
+          <div>
+            <div className="font-extrabold tracking-widest text-[13px]">BAIGAMATS</div>
+            <div className="text-[10px] tracking-[0.2em] text-white/60 font-semibold">TECHNOLOGIES</div>
+          </div>
         </div>
-        <nav className="space-y-1 flex-1">
-          <Link href="/" className="flex gap-3 px-3 py-2.5 bg-white/10 rounded-xl text-sm font-medium">🏠 Dashboard</Link>
-          <Link href="/directory" className="flex gap-3 px-3 py-2.5 hover:bg-white/5 rounded-xl text-sm text-gray-400">👥 Directory</Link>
-          <Link href="/employees" className="flex gap-3 px-3 py-2.5 hover:bg-white/5 rounded-xl text-sm text-gray-400">📁 Employees</Link>
-          <Link href="/attendance" className="flex gap-3 px-3 py-2.5 hover:bg-white/5 rounded-xl text-sm text-gray-400">⏱️ Attendance</Link>
-          <Link href="/payroll" className="flex gap-3 px-3 py-2.5 hover:bg-white/5 rounded-xl text-sm text-gray-400">💰 Payroll</Link>
-        </nav>
-        <div className="bg-white/5 rounded-xl p-3 text-xs"><p className="text-gray-400">Payroll Pool</p><p className="font-bold text-white">UGX 82,986,600</p><p className="text-green-400 mt-1">● LIVE</p></div>
+
+        <div className="mt-10 space-y-2">
+          <p className="text-[10px] tracking-widest text-white/40 mb-3">MENU</p>
+          <Link href="/" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white text-black font-semibold text-sm">🏠 Dashboard</Link>
+          <Link href="/employees" className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 hover:bg-white/10 text-sm">👥 Human Resource</Link>
+        </div>
+
+        <div className="mt-auto space-y-4">
+          <div className="bg-white/[0.06] rounded-2xl p-4 flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center font-bold">B</div>
+            <div className="flex-1">
+              <div className="text-sm font-semibold">Baigamats Admin</div>
+              <div className="text-[11px] text-white/50">baigamatsinquiries@gmail.com</div>
+            </div>
+          </div>
+          <div className="text-[11px] text-white/30 text-center">Powered by Baigamats © 2026</div>
+        </div>
       </aside>
-      <main className="flex-1 md:ml-64">
-        <header className="bg-white border-b sticky top-0 z-10 px-6 md:px-8 py-4 flex justify-between items-center">
-          <div><h1 className="text-2xl font-bold">All 16 Screens Operational ✓</h1><p className="text-sm text-gray-500">Pool: <b className="text-gray-900">UGX 82,986,600</b> • Click any card • Ready for team</p></div>
-          <div className="flex items-center gap-3"><span className="hidden md:inline bg-emerald-600 text-white px-4 py-1.5 rounded-full text-xs font-bold">16 SCREENS • LIVE</span><Link href="/login" className="w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center">B</Link></div>
-        </header>
-        <div className="p-6 md:p-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {modules.map(m => (
-              <Link key={m.id} href={m.path} className="bg-white rounded-2xl p-5 border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all group">
-                <div className="flex justify-between items-start mb-3"><span className="text-xs text-gray-400 font-mono">{m.id}</span><span className="text-xl group-hover:scale-110 transition">{m.icon}</span></div>
-                <h3 className="font-bold text-gray-900">{m.title}</h3><p className="text-xs text-gray-500 mt-1">{m.desc}</p>
-                <p className="text-xs text-emerald-600 font-medium mt-4">→ Open</p>
-              </Link>
-            ))}
+
+      {/* MAIN */}
+      <main className="flex-1 p-8">
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-[28px] font-bold tracking-tight text-[#0B1220]">HRMS Dashboard</h1>
+            <p className="text-sm text-gray-500 mt-1">Kampala, UG • {new Date().toLocaleDateString()}</p>
+          </div>
+          <div className="bg-black text-white text-xs px-4 py-2 rounded-full">LIVE • Supabase</div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-5">
+          <div className="bg-white rounded-[20px] p-6 shadow-sm border border-black/[0.04]">
+            <div className="text-xs text-gray-500">Total Employees</div>
+            <div className="text-3xl font-bold mt-2">3</div>
+            <div className="text-xs text-emerald-600 mt-3">● Active in DB</div>
+          </div>
+          <div className="bg-white rounded-[20px] p-6 shadow-sm border border-black/[0.04]">
+            <div className="text-xs text-gray-500">Assets Assigned</div>
+            <div className="text-3xl font-bold mt-2">1</div>
+            <div className="text-xs text-gray-500 mt-3">1 laptop assigned</div>
+          </div>
+          <div className="bg-white rounded-[20px] p-6 shadow-sm border border-black/[0.04]">
+            <div className="text-xs text-gray-500">Pending Approvals</div>
+            <div className="text-3xl font-bold mt-2">0</div>
+            <div className="text-xs text-amber-600 mt-3">All clear</div>
+          </div>
+        </div>
+
+        <div className="mt-6 bg-[#0B1220] rounded-[24px] p-8 text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-xl font-semibold">Human Resource Module</h2>
+              <p className="text-sm text-white/60 mt-2">Your only active module. Everything HR lives here.</p>
+            </div>
+            <Link href="/employees" className="bg-white text-black px-6 py-3 rounded-xl text-sm font-semibold">Open HR →</Link>
           </div>
         </div>
       </main>
