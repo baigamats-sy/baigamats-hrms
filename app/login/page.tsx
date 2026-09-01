@@ -1,0 +1,1 @@
+'use client'; export default function Page(){return <div style={{padding:32}}><h1>01 Login + Role</h1><p>CEO: ceo@baigamats.com / HR: hr@baigamats.com / Staff: staff@baigamats.com</p><p style={{marginTop:16}}><a href='/my-hr' style={{background:'black',color:'white',padding:'8px 16px',borderRadius:8}}>Go to My HR ?</a></p></div>}
