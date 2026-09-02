@@ -1,2 +1,3 @@
-mkdir app/employees -Force
-notepad app/employees/layout.tsx
+export default function EmployeesLayout({ children }: { children: React.ReactNode }) {
+  return <div>{children}</div>;
+}
