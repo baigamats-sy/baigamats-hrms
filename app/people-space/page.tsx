@@ -28,7 +28,11 @@ export default function PeopleSpace(){
     const {data:emps}=await supabase.from('employees').select('*');
     if(emps){
       setEmployees(emps);
-      const myRec = user?.id? emps.find((e:any)=>e.auth_user_id===user.id) : null || emps[0];
+      let myRec:any = emps[0];
+      if(user?.id){
+        const found = emps.find((e:any)=>e.auth_user_id===user.id);
+        if(found) myRec = found;
+      }
       setMe(myRec);
       const managerRoles=['manager','line_manager','hr','admin','lead','head'];
       if(myRec && managerRoles.includes((myRec.role||'').toLowerCase())) setIsManager(true);
@@ -92,7 +96,7 @@ export default function PeopleSpace(){
         <div className="flex gap-5 border-b mb-6 overflow-x-auto">
           {[
             ['workspace','My Workspace'],['leave','Leave'],['requests',`My Requests (${myRequests.length+leaves.length})`],
-          ...(isManager?[['approvals',`My Approvals (${teamRequests.length})`] as any]:[]),
+         ...(isManager?[['approvals',`My Approvals (${teamRequests.length})`] as any]:[]),
             ['recognition','Recognition'],['disciplinary','Files & Disciplinary'],['org','Org Structure']
           ].map(([k,l]:any)=>(
             <button key={k} onClick={()=>setTab(k)} className={`pb-3 whitespace-nowrap text-sm font-medium border-b-2 ${tab===k?'border-black text-black':'border-transparent text-gray-500'}`}>{l}</button>
